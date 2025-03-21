@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mxlsc Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #000;
+            background: linear-gradient(45deg, #ff0000, #ff4500);
             color: #fff;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -19,14 +20,20 @@
             background: rgba(17, 17, 17, 0.8);
             border-bottom: 2px solid #ff0000;
             backdrop-filter: blur(10px);
+            position: relative;
         }
         h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
+            font-family: 'Poppins', sans-serif;
+            color: #ff0000;
+            text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.7);
+            animation: fadeIn 1s ease-out;
         }
         h2 {
             margin: 10px 0;
             color: #ff0000;
+            font-size: 1.5em;
         }
         .about {
             padding: 20px;
@@ -37,7 +44,7 @@
         }
         .about:hover {
             transform: scale(1.02);
-            background: rgba(255, 0, 0, 0.2);
+            background: rgba(255, 165, 0, 0.2);
         }
         .card {
             background: rgba(255, 0, 0, 0.2);
@@ -51,26 +58,11 @@
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
-            z-index: 1; /* Garantir que o card fique acima de outros elementos */
+            z-index: 1;
         }
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.8);
-        }
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1; /* Certificar que a sobreposição não cubra o botão */
-        }
-        .card:hover::before {
-            opacity: 1;
+            box-shadow: 0 4px 20px rgba(255, 165, 0, 0.8);
         }
         .button {
             background: linear-gradient(45deg, #ff0000, #ff4500);
@@ -81,13 +73,14 @@
             cursor: pointer;
             transition: background 0.3s, box-shadow 0.3s;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-            z-index: 2; /* Garantir que o botão fique acima de outros elementos */
-            position: relative; /* Posicionar o botão corretamente */
+            z-index: 2;
+            position: relative;
         }
         .button:hover {
-            background: linear-gradient(45deg, #cc0000, #ff0000);
+            background: linear-gradient(45deg, #cc0000, #ff5500);
             box-shadow: 0 0 20px rgba(255, 0, 0, 1);
         }
+
         .social-links {
             text-align: center;
             margin: 20px 0;
@@ -102,6 +95,19 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
             text-decoration: underline;
         }
+
+        /* Animações */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .card {
                 width: calc(100% - 40px);
@@ -113,44 +119,60 @@
 
 <header>
     <h1>Mxlsc Products</h1>
-    <h2>Loja de Produtos Incríveis</h2>
-    <a href="#about" style="color: #ff0000; text-decoration: none;">Sobre Mim</a>
-</header>
+    <h2>--------------{virtual store}--------------</h2>
 
 <section id="about" class="about">
-    <h2>Sobre Mim</h2>
-    <p>Bem-vindo à Mxlsc Products! Aqui você encontrará uma variedade de produtos incríveis. Sinta-se à vontade para explorar e comprar!</p>
+    <h2>About me</h2>
+    <p>Welcome to my virtual store! Here you will find a variety of amazing products. Feel free to explore and buy!</p>
 </section>
 
 <section>
-    <h2>Produtos</h2>
+    <h2>Products</h2>
     <div class="card">
-        <h3>Produto 1</h3>
-        <p>Preço: R$ 10,00</p>
-        <button class="button" onclick="buyProduct('Produto 1', 10)">Comprar</button>
+        <h3>Product 1</h3>
+        <p>Price: R$ 10,00</p>
+        <button class="button" onclick="redirectToKoFi('produto1')">Buy</button>
     </div>
     <div class="card">
-        <h3>Produto 2</h3>
-        <p>Preço: R$ 20,00</p>
-        <button class="button" onclick="buyProduct('Produto 2', 20)">Comprar</button>
+        <h3>Product 2</h3>
+        <p>Price: R$ 20,00</p>
+        <button class="button" onclick="redirectToKoFi('produto2')">Buy</button>
     </div>
     <div class="card">
-        <h3>Produto 3</h3>
-        <p>Preço: R$ 30,00</p>
-        <button class="button" onclick="buyProduct('Produto 3', 30)">Comprar</button>
+        <h3>Product 3</h3>
+        <p>Price: R$ 30,00</p>
+        <button class="button" onclick="redirectToKoFi('produto3')">Buy</button>
     </div>
 </section>
 
 <section class="social-links">
-    <h2>Redes Sociais</h2>
+    <h2>Social media</h2>
     <a href="https://github.com/Mxlsc-XXX" target="_blank">GitHub</a>
-    <a href="https://discord.com" target="_blank">Discord</a>
-    <a href="https://guns.lol/mxlsc" target="_blank">Guns.lol</a>
+    <a href="https://discord.com/invite/Mxlsc" target="_blank">Discord</a>
 </section>
 
 <script>
-    function buyProduct(product, price) {
-        alert(`Você selecionou ${product} por R$ ${price}.`);
+    function redirectToKoFi(product) {
+        let koFiUrl = '';
+
+        // Associando o produto ao link específico do Ko-Fi
+        switch (product) {
+            case 'produto1':
+                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 1
+                break;
+            case 'produto2':
+                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 2
+                break;
+            case 'produto3':
+                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 3
+                break;
+            default:
+                alert('Produto não encontrado.');
+                return;
+        }
+
+        // Redirecionando para a página do Ko-Fi
+        window.open(koFiUrl, '_blank');
     }
 </script>
 
