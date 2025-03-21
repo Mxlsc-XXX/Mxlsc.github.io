@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mxlsc Products</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(17, 17, 17, 0.8);
+            border-bottom: 2px solid #ff0000;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            margin: 10px 0;
+            color: #ff0000;
+        }
+        .about {
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px;
+            transition: transform 0.3s, background 0.5s;
+        }
+        .about:hover {
+            transform: scale(1.02);
+            background: rgba(255, 0, 0, 0.2);
+        }
+        .card {
+            background: rgba(255, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            display: inline-block;
+            width: calc(30% - 40px);
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Garantir que o card fique acima de outros elementos */
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.8);
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1; /* Certificar que a sobreposição não cubra o botão */
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .button {
+            background: linear-gradient(45deg, #ff0000, #ff4500);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            z-index: 2; /* Garantir que o botão fique acima de outros elementos */
+            position: relative; /* Posicionar o botão corretamente */
+        }
+        .button:hover {
+            background: linear-gradient(45deg, #cc0000, #ff0000);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        }
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .social-links a {
+            color: #ff0000;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: text-shadow 0.3s;
+        }
+        .social-links a:hover {
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mxlsc Products</h1>
+    <h2>Loja de Produtos Incríveis</h2>
+    <a href="#about" style="color: #ff0000; text-decoration: none;">Sobre Mim</a>
+</header>
+
+<section id="about" class="about">
+    <h2>Sobre Mim</h2>
+    <p>Bem-vindo à Mxlsc Products! Aqui você encontrará uma variedade de produtos incríveis. Sinta-se à vontade para explorar e comprar!</p>
+</section>
+
+<section>
+    <h2>Produtos</h2>
+    <div class="card">
+        <h3>Produto 1</h3>
+        <p>Preço: R$ 10,00</p>
+        <button class="button" onclick="buyProduct('Produto 1', 10)">Comprar</button>
+    </div>
+    <div class="card">
+        <h3>Produto 2</h3>
+        <p>Preço: R$ 20,00</p>
+        <button class="button" onclick="buyProduct('Produto 2', 20)">Comprar</button>
+    </div>
+    <div class="card">
+        <h3>Produto 3</h3>
+        <p>Preço: R$ 30,00</p>
+        <button class="button" onclick="buyProduct('Produto 3', 30)">Comprar</button>
+    </div>
+</section>
+
+<section class="social-links">
+    <h2>Redes Sociais</h2>
+    <a href="https://github.com/Mxlsc-XXX" target="_blank">GitHub</a>
+    <a href="https://discord.com" target="_blank">Discord</a>
+    <a href="https://guns.lol/mxlsc" target="_blank">Guns.lol</a>
+</section>
+
+<script>
+    function buyProduct(product, price) {
+        alert(`Você selecionou ${product} por R$ ${price}.`);
+    }
+</script>
+
+</body>
+</html>
