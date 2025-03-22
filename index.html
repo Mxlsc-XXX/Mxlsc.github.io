@@ -5,47 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mxlsc Products</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.4/full/pyodide.js"></script>
     <style>
         body {
-            background: linear-gradient(45deg, #ff0000, #ff4500);
+            background: url('wallpapernew.png') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            backdrop-filter: blur(10px);
+            min-height: 100vh; /* Blur até o final da tela */
         }
+
         header {
             text-align: center;
             padding: 20px;
             background: rgba(17, 17, 17, 0.8);
-            border-bottom: 2px solid #ff0000;
             backdrop-filter: blur(10px);
             position: relative;
+            border-radius: 10px;
         }
+
+        h1, h2 {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        h1:hover, h2:hover {
+            transform: scale(1.05); /* Aumenta o tamanho ao passar o mouse */
+            color: #ff4500; /* Muda a cor ao passar o mouse */
+            text-shadow: 2px 2px 12px rgba(255, 69, 0, 0.7); /* Aumenta a sombra ao passar o mouse */
+            transition: transform 0.3s, color 0.3s, text-shadow 0.3s; /* Transição suave */
+        }
+
+
         h1 {
             margin: 0;
             font-size: 3em;
             font-family: 'Poppins', sans-serif;
             color: #ff0000;
             text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.7);
-            animation: fadeIn 1s ease-out;
+            animation-delay: 0.1s; /* 0.1s delay */
         }
+
         h2 {
             margin: 10px 0;
             color: #ff0000;
             font-size: 1.5em;
+            animation-delay: 0.2s; /* 0.2s delay */
         }
+
+        .about, .card, .social-links, .projects {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 0.5s ease-out forwards;
+            border-radius: 10px;
+        }
+
         .about {
             padding: 20px;
             background: rgba(255, 0, 0, 0.1);
-            border-radius: 10px;
             margin: 20px;
-            transition: transform 0.3s, background 0.5s;
+            animation-delay: 0.3s; /* 0.3s delay */
         }
-        .about:hover {
-            transform: scale(1.02);
-            background: rgba(255, 165, 0, 0.2);
+
+        .products-card {
+            background: rgba(255, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
         }
+
         .card {
             background: rgba(255, 0, 0, 0.2);
             backdrop-filter: blur(10px);
@@ -55,15 +90,32 @@
             display: inline-block;
             width: calc(30% - 40px);
             box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Adicione a transição para o fundo */
             position: relative;
             overflow: hidden;
             z-index: 1;
+            animation-delay: 0.4s; /* 0.4s delay */
         }
+
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(255, 165, 0, 0.8);
+            transform: translateY(-10px) scale(1.05); /* Move o card para cima e aumenta o tamanho ao passar o mouse */
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.7); /* Aumenta a sombra ao passar o mouse */
+            background: rgba(255, 0, 0, 0.3); /* Muda a cor de fundo ao passar o mouse */
         }
+
+        .projects {
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.1);
+            margin: 20px;
+            animation-delay: 0.5s; /* 0.5s delay */
+        }
+
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+            animation-delay: 0.6s; /* 0.6s delay */
+        }
+
         .button {
             background: linear-gradient(45deg, #ff0000, #ff4500);
             color: #fff;
@@ -71,32 +123,30 @@
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
-            transition: background 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+            box-shadow: 0 0 10px rgba(255,  0, 0, 0.8);
             z-index: 2;
             position: relative;
         }
+
         .button:hover {
             background: linear-gradient(45deg, #cc0000, #ff5500);
             box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+            transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
         }
 
-        .social-links {
-            text-align: center;
-            margin: 20px 0;
-        }
         .social-links a {
             color: #ff0000;
             margin: 0 10px;
             text-decoration: none;
             transition: text-shadow 0.3s;
         }
+
         .social-links a:hover {
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
             text-decoration: underline;
         }
 
-        /* Animações */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -113,66 +163,320 @@
                 width: calc(100% - 40px);
             }
         }
+
+        .profile-pic {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            border-radius: 50%;
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.1s; /* 0.7s delay */
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05); /* Aumenta a imagem do perfil ao passar o mouse */
+            transition: transform 0.3s; /* Transição suave */
+        }
+
+        .project-image {
+            width: 30%;
+            border-radius: 10px;
+            margin: 10px 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .python-example {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            animation: fadeIn 0.5s ease-out forwards;
+            display: none; /* Inicialmente oculto */
+        }
+
+        .toggle-button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s; /* Animação ao clicar */
+        }
+
+        .toggle-button:hover {
+            transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+        }
+
+        .code-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #code-input {
+            width: 98.5%;
+            height: 150px;
+            margin-top: 20px;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            resize: none;
+        }
+
+        #python-output {
+            width: 98.5%;
+            height: 150px;
+            margin-top: 20px;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            resize: none;
+            overflow: auto; /* Impede redimensionamento */
+        }
+
+        .button {
+            width: 100%; /* Faz o botão ter a mesma largura da caixa de texto */
+            position: relative;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s; /* Adiciona transição para animação */
+        }
+
+        .button:active {
+            transform: scale(0.95); /* Animação de clique */
+        }
+
+        /* scroll bar */
+
+        /* Para navegadores WebKit (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 12px; /* Largura da barra de rolagem */
+            transition: width 0.3s; /* Transição suave para a largura */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000; /* Cor de fundo da trilha da barra de rolagem */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff0000; /* Cor da parte que pode ser arrastada */
+            border-radius: 10px; /* Bordas arredondadas para o "thumb" */
+            transition: background 0.3s, transform 0.3s; /* Transição suave para a cor e transformação */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cc0000; /* Cor do "thumb" ao passar o mouse */
+            transform: scale(1.1); /* Aumenta o "thumb" ao passar o mouse */
+        }
+
+        /* Para navegadores Firefox */
+        * {
+            scrollbar-width: thin; /* Largura da barra de rolagem */
+            scrollbar-color: #ff0000 #000; /* Cor do "thumb" e da trilha */
+        }
+
+        *::-moz-scrollbar {
+            width: 12px; /* Largura da barra de rolagem */
+            transition: width 0.3s; /* Transição suave para a largura */
+        }
+
+        *::-moz-scrollbar-thumb {
+            background: #ff0000; /* Cor do "thumb" */
+            border-radius: 10px; /* Bordas arredondadas para o "thumb" */
+            transition: background 0.3s, transform 0.3s; /* Transição suave para a cor e transformação */
+        }
+
+        *::-moz-scrollbar-thumb:hover {
+            background: #cc0000; /* Cor do "thumb" ao passar o mouse */
+            transform: scale(1.1); /* Aumenta o "thumb" ao passar o mouse */
+        }
+
+        .kofi-widget-container {
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            margin: 20px 0; /* Margem superior e inferior */
+        }
+
+        .kofi-widget-container script {
+            transition: transform 0.3s, box-shadow 0.3s; /* Transição suave para transformação e sombra */
+        }
+
+        .kofi-widget-container:hover script {
+            transform: scale(1.05); /* Aumenta o widget ao passar o mouse */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Sombra brilhante ao passar o mouse */
+        }
     </style>
 </head>
 <body>
 
 <header>
+    <img src="pfp.png" alt="Profile Picture" class="profile-pic">
     <h1>Mxlsc Products</h1>
-    <h2>--------------{virtual store}--------------</h2>
+    <h2>}--------------{virtual store}--------------{</h2>
+</header>
 
-<section id="about" class="about">
+<section class="about">
     <h2>About me</h2>
     <p>Welcome to my virtual store! Here you will find a variety of amazing products. Feel free to explore and buy!</p>
 </section>
 
-<section>
+<section class="projects">
+    <h2>Project Demonstrations</h2>
+    <img src="project1.png" alt="Project 1" class="project-image">
+    <img src="project2.png" alt="Project 2" class="project-image">
+    <img src="project3.png" alt="Project 3" class="project-image">
+
+    <button class="button" onclick="togglePythonPanel()">
+        <i class="bi bi-code-slash" style="margin-right: 5px;"></i> Toggle Python Example & Coding
+    </button>
+    <div class="python-example" id="python-panel">
+        <h3>Python Example & Coding</h3>
+        <div id="code-list">
+            <div class="code-box" onclick="loadCode('for i in range(5): print(i)')">Example 1: Contagem de 0 a 4</div>
+            <div class="code-box" onclick="loadCode('def soma(a, b): return a + b')">Example 2: Função de Soma</div>
+        </div>
+        <textarea id="code-input"># Write ur code here...</textarea>
+        <button class="button" onclick="runPythonCode()">
+            <i class="bi bi-play-circle" style="margin-right: 5px;"></i> Run code
+        </button>
+        <button class="button" onclick="stopPythonCode()">
+            <i class="bi bi-stop-circle" style="margin-right: 5px;"></i> Stop Code
+        </button>
+        <div id="python-output"></div>
+    </div>
+</section>
+
+<section class="projects">
     <h2>Products</h2>
     <div class="card">
-        <h3>Product 1</h3>
+        <h3> Product 1</h3>
         <p>Price: R$ 10,00</p>
-        <button class="button" onclick="redirectToKoFi('produto1')">Buy</button>
+        <button class="button" onclick="redirectToKoFi('produto1')">
+            <i class="bi bi-cart" style="margin-right: 5px;"></i> Buy
+        </button>
     </div>
     <div class="card">
         <h3>Product 2</h3>
         <p>Price: R$ 20,00</p>
-        <button class="button" onclick="redirectToKoFi('produto2')">Buy</button>
+        <button class="button" onclick="redirectToKoFi('produto2')">
+            <i class="bi bi-cart" style="margin-right: 5px;"></i> Buy
+        </button>
     </div>
     <div class="card">
         <h3>Product 3</h3>
         <p>Price: R$ 30,00</p>
-        <button class="button" onclick="redirectToKoFi('produto3')">Buy</button>
+        <button class="button" onclick="redirectToKoFi('produto3')">
+            <i class="bi bi-cart" style="margin-right: 5px;"></i> Buy
+        </button>
     </div>
 </section>
 
 <section class="social-links">
     <h2>Social media</h2>
-    <a href="https://github.com/Mxlsc-XXX" target="_blank">GitHub</a>
-    <a href="https://discord.com/invite/Mxlsc" target="_blank">Discord</a>
+    <a href="https://github.com/Mxlsc-XXX" target ="_blank">
+        <i class="bi bi-github" style="margin-right: 5px;"></i> GitHub
+    </a>
+    <a href="https://discord.com/invite/Mxlsc" target="_blank">
+        <i class="bi bi-discord" style="margin-right: 5px;"></i> Discord
+    </a>
 </section>
 
+<div class="kofi-widget-container">
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>
+        kofiwidget2.init('Support me on Ko-fi', '#000000', 'F1F71APGG8');
+        kofiwidget2.draw();
+    </script>
+</div>
 <script>
+    let runningCode = false; // Variável para controlar se o código está em execução
+
+    function loadCode(code) {
+        document.getElementById('code-input').value = code;
+    }
+
+    async function runPythonCode() {
+        let pyodide = await loadPyodide();
+        
+        let output = '';
+        pyodide.globals.set('print', (value) => {
+            output += value + '\n';
+        });
+
+        runningCode = true; // Define que o código está em execução
+
+        try {
+            await pyodide.runPython(document.getElementById('code-input').value);
+        } catch (error) {
+            output += error;
+        }
+
+        // Chama a função para simular a digitação do output
+        typeOutput(output);
+        runningCode = false; // Define que o código não está mais em execução
+    }
+
+    function typeOutput(text) {
+        const outputElement = document.getElementById('python-output');
+        outputElement.innerText = ''; // Limpa o campo de saída
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                outputElement.innerText += text.charAt(index);
+                index++;
+                setTimeout(type, 50); // Ajuste a velocidade da digitação aqui
+            }
+        }
+
+        type(); // Inicia a digitação
+    }
+
+    function stopPythonCode() {
+        if (runningCode) {
+            alert("Parar a execução do código não é suportado diretamente.");
+        } else {
+            alert("Nenhum código está em execução.");
+        }
+    }
+
     function redirectToKoFi(product) {
         let koFiUrl = '';
 
-        // Associando o produto ao link específico do Ko-Fi
         switch (product) {
             case 'produto1':
-                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 1
+                koFiUrl = 'https://ko-fi.com/product1';
                 break;
             case 'produto2':
-                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 2
+                koFiUrl = 'https://ko-fi.com/product2';
                 break;
             case 'produto3':
-                koFiUrl = 'https://ko-fi.com/mxlsc000'; // Substitua pelo link correto do Ko-Fi para o produto 3
+                koFiUrl = 'https://ko-fi.com/product3';
                 break;
             default:
-                alert('Produto não encontrado.');
-                return;
+                koFiUrl = 'https://ko-fi.com';
         }
-
-        // Redirecionando para a página do Ko-Fi
         window.open(koFiUrl, '_blank');
+    }
+
+    function togglePythonPanel() {
+        const panel = document.getElementById('python-panel');
+        if (panel.style.display === 'none' || panel.style.display === '') {
+            panel.style.display = 'block';
+        } else {
+            panel.style.display = 'none';
+        }
     }
 </script>
 
