@@ -21,6 +21,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;display=swap" rel="stylesheet"/>
    
    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
 
   <style>
 
@@ -44,9 +46,28 @@
 
             scroll-behavior: smooth;
 
+            font-family: 'Orbitron', sans-serif;
+
+            backdrop-filter: blur(5px);
+            transition: all 0.5s ease-in-out;
+
+            cursor: url('https://cur.cursors-4u.net/gaming/gam-14/gam1383.cur'), auto;
+
         }
 
-
+        h2 {
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            animation: pulseGlow 2s infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            }
+        }
 
 
         @keyframes fadeIn {
@@ -58,6 +79,29 @@
             }
 
         }
+
+   .btn-outline {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-outline::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(#ff0000, transparent, #ff0000);
+        animation: rotateGlow 3s linear infinite;
+        z-index: -1;
+    }
+    
+    @keyframes rotateGlow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
 
     h2 {
           font-family: 'Jura', serif; 
@@ -87,9 +131,9 @@
 
 
         .card:hover {
-
+            transition: transform 0.3s ease;
             transform:scale(1.05);
-
+            box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000, 0 0 40px #ff0000;
         }
 
 
